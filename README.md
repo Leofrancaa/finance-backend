@@ -74,6 +74,6 @@ http://localhost:3000
 
 Este é um projeto pessoal desenvolvido por **Leonardo Franca** com fins de estudo e aprendizado.
 
-© 2024 Leonardo Franca. Todos os direitos reservados.
+© 2025 Leonardo Franca. Todos os direitos reservados.
 
 O uso, cópia ou redistribuição deste código é permitido apenas com autorização prévia do autor.
