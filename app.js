@@ -22,7 +22,10 @@ app.use((req, res, next) => {
 });
 
 // Middlewares globais
-app.use(cors()); // Habilita CORS para todas as rotas
+app.use(cors({
+    origin: "https://finance-frontend-rzvo.onrender.com/", // ou o domínio do seu frontend
+    credentials: true
+})); // Habilita CORS para todas as rotas
 app.use(express.json()); // Habilita o parsing de JSON no corpo das requisições
 
 // Rotas
