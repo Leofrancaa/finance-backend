@@ -23,7 +23,7 @@ app.use((req, res, next) => {
 
 // Middlewares globais
 app.use(cors({
-    origin: "https://finance-frontend-rzvo.onrender.com", // ou o domínio do seu frontend
+    origin: ["https://finance-frontend-rzvo.onrender.com", "http://localhost:3000"], // ou o domínio do seu frontend
     methods: ['GET', 'POST', 'PUT', 'DELETE'],
     allowedHeaders: ['Content-Type', 'Authorization'],
     credentials: true // si necesitas cookies/auth

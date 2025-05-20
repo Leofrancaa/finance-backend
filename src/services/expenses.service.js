@@ -19,11 +19,15 @@ export const createNewExpense = async (body) => {
         fixed: body.fixed || false,
         date: body.date ?? new Date().toISOString(),
         subcategory: body.subcategory || "",
+        creditCardId:
+            body.paymentMethod === "cartão de crédito"
+                ? body.creditCardId || null
+                : null,
+        userId: body.userId, // <- garanta que isso também seja salvo
     };
 
     const { insertedId } = await db.collection("expenses").insertOne(dataToSave);
 
-    // Retorna apenas os dados válidos — sem `id: null`
     return { ...dataToSave, _id: insertedId };
 };
 

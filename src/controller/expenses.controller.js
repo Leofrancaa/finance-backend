@@ -39,6 +39,10 @@ export const createExpense = async (req, res) => {
             date,
             userId: req.userId,
             subcategory: req.body.subcategory || "",
+            creditCardId:
+                req.body.paymentMethod === "cartão de crédito"
+                    ? req.body.creditCardId || null
+                    : null,
         };
 
         const { insertedId } = await db.collection("expenses").insertOne(dataToSave);
