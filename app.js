@@ -8,6 +8,10 @@ import thresholdsRoutes from "./src/routes/thresholds.routes.js";
 import categoryRoutes from "./src/routes/category.routes.js";
 import incomeCategoriesRoutes from "./src/routes/incomeCategories.routes.js";
 import creditCardRoutes from "./src/routes/creditCard.routes.js";
+import investmentRoutes from "./src/routes/investment.routes.js"; // ✅ nova importação
+import stockRoutes from "./src/routes/stocks.routes.js";
+import cryptoRoutes from "./src/routes/crypto.routes.js";
+import macroRoutes from "./src/routes/macro.routes.js";
 
 import dotenv from "dotenv";
 
@@ -15,34 +19,39 @@ dotenv.config(); // Carrega as variáveis de ambiente do arquivo .env
 
 const app = express(); // Cria uma instância do Express
 
-// Middleware para definir Content-Type (mantido)
+// Middleware para definir Content-Type
 app.use((req, res, next) => {
     res.setHeader("Content-Type", "application/json");
     next();
 });
 
 // Middlewares globais
-app.use(cors({
-    origin: ["https://finance-frontend-rzvo.onrender.com", "http://localhost:3000"], // ou o domínio do seu frontend
-    methods: ['GET', 'POST', 'PUT', 'DELETE'],
-    allowedHeaders: ['Content-Type', 'Authorization'],
-    credentials: true // si necesitas cookies/auth
-})); // Habilita CORS para todas as rotas
-app.use(express.json()); // Habilita o parsing de JSON no corpo das requisições
+app.use(
+    cors({
+        origin: ["https://finance-frontend-rzvo.onrender.com", "http://localhost:3000"],
+        methods: ["GET", "POST", "PUT", "DELETE"],
+        allowedHeaders: ["Content-Type", "Authorization"],
+        credentials: true,
+    })
+);
+app.use(express.json());
 
-// Rotas
-app.use("/api/expenses", expensesRoutes); // Registra as rotas de despesas
-app.use("/api/recurring-expenses", recurringRoutes); // Registra as rotas de despesas recorrentes
-app.use('/api/incomes', incomesRoutes); // Registra as rotas de receitas
-app.use("/api/auth", authRoutes); // Registra as rotas de autenticação
-app.use("/api/thresholds", thresholdsRoutes); // Registra as rotas de limites
-app.use("/api/categories", categoryRoutes); // Registra as rotas de categorias de despesas
-app.use("/api/income-categories", incomeCategoriesRoutes); // Registra as rotas de categorias de receita
-app.use("/api/credit-cards", creditCardRoutes); // Registra as rotas de cartões de crédito
+// Rotas da API
+app.use("/api/expenses", expensesRoutes);
+app.use("/api/recurring-expenses", recurringRoutes);
+app.use("/api/incomes", incomesRoutes);
+app.use("/api/auth", authRoutes);
+app.use("/api/thresholds", thresholdsRoutes);
+app.use("/api/categories", categoryRoutes);
+app.use("/api/income-categories", incomeCategoriesRoutes);
+app.use("/api/credit-cards", creditCardRoutes);
+app.use("/api/investments", investmentRoutes); // ✅ nova rota registrada
+app.use("/api/stocks", stockRoutes);
+app.use("/api/crypto", cryptoRoutes);
+app.use("/api/macro", macroRoutes);
 
 // Inicia o servidor
 const PORT = process.env.PORT || 3001;
 app.listen(PORT, () => {
     console.log(`Servidor rodando na porta ${PORT}`);
 });
-
