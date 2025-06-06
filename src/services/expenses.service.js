@@ -14,10 +14,9 @@ export const createNewExpense = async (body) => {
         amount: body.amount,
         paymentMethod: body.paymentMethod,
         installments: body.installments || "",
-        day: body.day,
         note: body.note || "",
         fixed: body.fixed || false,
-        date: body.date ?? new Date().toISOString(),
+        date: body.date,
         subcategory: body.subcategory || "",
         creditCardId:
             body.paymentMethod === "cartão de crédito"

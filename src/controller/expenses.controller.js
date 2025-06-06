@@ -26,17 +26,16 @@ export const createExpense = async (req, res) => {
     try {
         const db = await getDatabase();
 
-        const date = req.body.date ?? new Date().toISOString();
+        const date = req.body.date;
 
         const dataToSave = {
             type: req.body.type,
             amount: req.body.amount,
             paymentMethod: req.body.paymentMethod,
             installments: req.body.installments || "",
-            day: req.body.day,
             note: req.body.note || "",
             fixed: req.body.fixed || false,
-            date,
+            date: req.body.date, // Converte a data para o formato correto
             userId: req.userId,
             subcategory: req.body.subcategory || "",
             creditCardId:
